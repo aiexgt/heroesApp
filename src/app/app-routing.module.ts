@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { HomeComponent } from './heroes/pages/home/home.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
   {
     path: 'heroes',
     component: HomeComponent,
-    loadChildren: () => import('./heroes/heroes.module').then( m => m.HeroesModule )
+    loadChildren: () => import('./heroes/heroes.module').then( m => m.HeroesModule ),
+    canLoad: [ AuthGuard ]
   },
   {
     path: '404',
